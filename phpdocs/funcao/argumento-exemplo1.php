@@ -28,14 +28,28 @@ function takes_many_args(
 // This gives us an option to specify the expected data type when declaring a function, 
 // it will throw a "Fatal Error" if the data type mismatches.
 
-function addNumbers (int $a, int $b)
+function sum (int $a, int $b) : int
 {
     return $a + $b ;
 }
 
 echo "<br><br>";
-echo addNumbers(5, "5 days");
 
+echo "1 + 2 = " . sum (1,2) . "<br>";
+echo "7 + 13 = " . sum(7,13) . "<br>";
+echo "2 + 4 = " .sum(2,4);
 
+echo "<br><br>";
+echo "Passing argument by reference. <br>";
+
+function add_five( int &$value)
+{
+    $value += 5 ;
+}
+
+$num = 2;
+echo "before function call: num = $num <br>";
+add_five($num);
+echo "after funcion call: num = $num";
 
 ?>
