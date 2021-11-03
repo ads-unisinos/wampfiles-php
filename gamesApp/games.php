@@ -1,7 +1,7 @@
 <?php
 
 //  ....................................
-//  Games App - Aplicação exemplo em PHP
+//  Games App - Aplicaï¿½ï¿½o exemplo em PHP
 //  ....................................
 
 
@@ -35,6 +35,28 @@ function mostraTabela($qtdeColunas, $consulta, $func){
 	$tab .=  "<p></p>";
 	echo $tab;
 }
+
+function mostraTabelaPosts($qtdeColunas, $consulta){
+	
+	$i = 0;
+	$tab = "";
+	while( $row = mysqli_fetch_array($consulta, MYSQLI_NUM) ) 
+	{
+		$tab .=  "<tr valign = center>";
+		$tab .=  "<td class=tabv><img src=img/sp.gif width=10 height=8></td>";
+		for($j = 0; $j < $qtdeColunas; $j++){
+			$tab .=  "<td class = tabv width = 180 height = 6>".htmlspecialchars($row[$j])."&nbsp;</td>"; 
+		}
+		$tab .=  "<td class = tabv></td>"; //exemplo de html gerado: "... onclick = deletaJogo(3)><X> ..."
+		$tab .=  "</tr>";
+		$i++;
+	}
+	$tab .=  "<p></p>";
+
+	echo "printing table.<br>";
+	echo $tab;
+}
+
 function recuperaTabela($tabela){
 		$con = conectaDB();				
 		$result  =  mysqli_query($con, "SELECT nome FROM ".$tabela);
@@ -57,6 +79,10 @@ function mostraJogos(){
 		mostraTabela(4,$result,'Jogo');
 		$con->close();
 }
+	if(@$_REQUEST['action'] == "recuperarRemetentes")     //recupera lista de nomes das cidades
+	{
+		recuperaTabela('usuarios');
+	}
 
 	if(@$_REQUEST['action'] == "recuperaCidades")     //recupera lista de nomes das cidades
 	{
@@ -68,6 +94,7 @@ function mostraJogos(){
 	}
 	if(@$_REQUEST['action'] == "ins")  //insere novo Usuario
 	{
+		console.log("Connection with db opened. acion = ins");
 		$con = conectaDB();
 		$nomeUsuario = $con->real_escape_string($_REQUEST['usuario']);
 		$nick = $con->real_escape_string($_REQUEST['nick']);
@@ -80,6 +107,30 @@ function mostraJogos(){
 		$con->close();			
 		mostraUsuarios();
 	}
+
+	if ( @$_REQUEST['action'] == 'postar') 
+	{
+		$con = conectaDB();
+
+		$titulo = $con->real_escape_string($_REQUEST['titulo']);
+		$msg = $con->real_escape_string($_REQUEST['msg']);
+		$remetente = $con->real_escape_string($_REQUEST['remetente']);
+		$id = $con->real_escape_string($_REQUEST['Id']);
+		
+		$query = "INSERT INTO forum (codUsuario, mensagem, titulo) VALUES ($id, '$msg', '$titulo')";
+		mysqli_query($con, $query);
+		$con->close();
+		mostrarPosts();
+	}
+
+	function mostrarPosts(){
+		$con = conectaDB();
+		$query = "SELECT u.nome, f.titulo, f.mensagem FROM `usuarios` AS u JOIN forum AS f ON ( u.cod = f.codUsuario) ORDER BY u.nome";
+		$res = mysqli_query($con, $query);		
+		$con->close(); 
+		mostraTabelaPosts(3,$res);
+	}
+
 	if(@$_REQUEST['action'] == "insJogo") //insere novo Jogo
 	{
 		$con = conectaDB();
@@ -107,6 +158,11 @@ function mostraJogos(){
 		mostraJogos();
 	}
 	
+	if(@$_REQUEST['action'] == "mostraPosts")
+	{
+		mostrarPosts();
+	}
+
 	if(@$_REQUEST['action'] == "mostraUsuarios")
 	{
 		mostraUsuarios();
@@ -115,5 +171,7 @@ function mostraJogos(){
 	{
 		mostraJogos();
 	}
+
+
 ?>
 

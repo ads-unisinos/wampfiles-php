@@ -36,23 +36,24 @@
 	</tbody>
 </table>
 
+<table id='tab-post' border=0 cellpadding=0 cellspacing=0></table>
 
 <form id="forum-form">
 	<ul>
 		<li>
 			<label for="titulo">Titulo</label>
-			<input id="titulo" type="text" placeholder="titulo">
+			<input id="titulo" name="titulo" type="text" placeholder="titulo">
 		</li>
 		<li>
 			<label for="mensagem">Mensagem</label>
-			<textarea name="msg" id="msg" cols="20" rows="5"></textarea>
+			<textarea name="post_message" id="msg" cols="20" rows="5"></textarea>
 		</li>
 		<li>
-			<label for="remetente">Remetente</label>
-			<select name="cidade" id="cidades" size="1"></select>
+			<label for="remetentes">Remetente</label>
+			<select name="remetente" id="remetentes" size="1"></select>
 		</li>
 		<li class="button">
-			<button id="postarId" type="button" onclick="postar()">Postar</button>
+			<button id="post_btn" type="button" onclick="postar()">Postar</button>
 		</li>
 		
 	</ul>

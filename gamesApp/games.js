@@ -8,19 +8,45 @@ var httpRequest = new XMLHttpRequest;
 			}
 		}
 	};
+
+	
 	httpRequest.open('GET', stringCall);
 	httpRequest.send();
+	console.log("GET request sent with");
 }
 function inicializa(){
 	ajaxCall("games.php?action=recuperaCidades", inicializaSelecaoCidades);
 	ajaxCall("games.php?action=recuperaFabricantes", inicializaSelecaoFabricantes);
 	ajaxCall("games.php?action=mostraUsuarios", listaUsuarios);
 	ajaxCall("games.php?action=mostraJogos", listaJogos);
+	ajaxCall('games.php?action=mostraPosts', forumPosts);
+	ajaxCall('games.php?action=recuperarRemetentes', inicializaSelecaoUsuarios);
 }
 
-function postar() {
-	document.querySelector('.post-sucesso').innerText = 
-	"mensagem postada com sucesso no forum!!";
+function postar() 
+{
+	var titulo = document.querySelector('#titulo').value;
+	var remetente = document.querySelector('#remetentes').value;
+	var mensagem =document.querySelector('#msg').value;
+
+	document.querySelector('#titulo').value = '';
+	document.querySelector('#msg').value = '';
+	document.querySelector('#remetentes').value = '';
+
+	//const query = "?" + String.join("&", )
+	const idUsuario = "16";
+	const parms= "&titulo="+ titulo +"&msg="+ mensagem+"&remetente=" + remetente ;	
+	ajaxCall("games.php?action=postar" + parms + "&id=" + idUsuario, forumPosts);
+
+	// document.querySelector('.post-sucesso').innerText = 
+	// "mensagem postada com sucesso no forum!!";
+}
+
+
+function forumPosts(posts) {
+	console.log("in forumPosts ...");
+	console.log(posts);
+	document.querySelector('#tab-post').innerHTML = posts;
 }
 
 function insereUsuario(){	
@@ -63,7 +89,7 @@ function inicializaSelecao(lis, elemento){
 	var x = document.getElementById(elemento);	
 	var jsonData = JSON.parse(lis);
 
-	for(i=0;i<jsonData.length;i++){
+	for(i=0; i<jsonData.length;i++){
 		var option = document.createElement("option");
 		option.text = jsonData[i];
 		option.value = i + 1;
@@ -71,6 +97,11 @@ function inicializaSelecao(lis, elemento){
 		x.add(option);
 	}
 }
+
+function inicializaSelecaoUsuarios(remetentes) {
+	inicializaSelecao(remetentes, 'remetentes');
+}
+
 function inicializaSelecaoCidades(lisCidades){  
   inicializaSelecao(lisCidades, "listaCidades");
 }
