@@ -13,6 +13,12 @@ body {
 	background-color: #cfccf1;
 	font-size: 12px;
 }
+
+.post-sucesso {
+	background-color: green;
+	font-size: 10px;
+}
+
 h1 {
 	font-family: verdana,helvetica;
 	font-size: 16px;

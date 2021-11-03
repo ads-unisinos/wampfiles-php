@@ -17,6 +17,12 @@ function inicializa(){
 	ajaxCall("games.php?action=mostraUsuarios", listaUsuarios);
 	ajaxCall("games.php?action=mostraJogos", listaJogos);
 }
+
+function postar() {
+	document.querySelector('.post-sucesso').innerText = 
+	"mensagem postada com sucesso no forum!!";
+}
+
 function insereUsuario(){	
 	var i_use = document.getElementById('i_use').value;
 	var i_nic = document.getElementById('i_nic').value;

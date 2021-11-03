@@ -6,13 +6,59 @@
 <title>Games App</title>
 <meta charset="UTF-8" />
 <link href="games.css" rel="stylesheet" type="text/css">
+<link href="formulario.css" rel="stylesheet" >
 <script type="text/javascript" src="games.js"></script>
 </head>
 
 <body onload = "inicializa()">
 
+<div class="post-sucesso"></div>
+
 <h1>Games App</h1>
 <p>Um exemplo com HTML+CSS+Javascript e PHP<p>
+
+<h2>Tabela Forum</h2>
+
+<table id="tab-forum">
+	<thead>
+		<tr>
+			<th><strong>Remetente</strong></th>
+			<th><strong>Titulo</strong></th>
+			<th><strong>Mensagem</strong></th>
+		</tr>
+	</thead>
+	<tbody>
+		<tr>
+			<td>The table body</td>
+			<td>with two columns</td>
+			<td>with three columns</td>
+		</tr>
+	</tbody>
+</table>
+
+
+<form id="forum-form">
+	<ul>
+		<li>
+			<label for="titulo">Titulo</label>
+			<input id="titulo" type="text" placeholder="titulo">
+		</li>
+		<li>
+			<label for="mensagem">Mensagem</label>
+			<textarea name="msg" id="msg" cols="20" rows="5"></textarea>
+		</li>
+		<li>
+			<label for="remetente">Remetente</label>
+			<select name="cidade" id="cidades" size="1"></select>
+		</li>
+		<li class="button">
+			<button id="postarId" type="button" onclick="postar()">Postar</button>
+		</li>
+		
+	</ul>
+
+</form>
+
 
 <h2>Tabela Usuários</h2>
 
