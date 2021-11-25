@@ -8,7 +8,6 @@ var httpRequest = new XMLHttpRequest;
 			}
 		}
 	};
-
 	
 	httpRequest.open('GET', stringCall);
 	httpRequest.send();
@@ -23,7 +22,7 @@ function inicializa(){
 	ajaxCall('games.php?action=recuperarRemetentes', inicializaSelecaoUsuarios);
 }
 
-function postar() 
+function postar(idUsuario) 
 {
 	var titulo = document.querySelector('#titulo').value;
 	var remetente = document.querySelector('#remetentes').value;
@@ -33,19 +32,14 @@ function postar()
 	document.querySelector('#msg').value = '';
 	document.querySelector('#remetentes').value = '';
 
-	//const query = "?" + String.join("&", )
-	const idUsuario = "16";
 	const parms= "&titulo="+ titulo +"&msg="+ mensagem+"&remetente=" + remetente ;	
-	ajaxCall("games.php?action=postar" + parms + "&id=" + idUsuario, forumPosts);
+	ajaxCall("games.php?action=postar" + parms + "&Id=" + idUsuario, forumPosts);
 
-	// document.querySelector('.post-sucesso').innerText = 
-	// "mensagem postada com sucesso no forum!!";
+	document.querySelector('.post-sucesso').innerText = 
+	"mensagem postada com sucesso no forum!!";
 }
 
-
 function forumPosts(posts) {
-	console.log("in forumPosts ...");
-	console.log(posts);
 	document.querySelector('#tab-post').innerHTML = posts;
 }
 

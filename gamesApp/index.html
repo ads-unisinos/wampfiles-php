@@ -19,24 +19,23 @@
 
 <h2>Tabela Forum</h2>
 
-<table id="tab-forum">
-	<thead>
-		<tr>
-			<th><strong>Remetente</strong></th>
-			<th><strong>Titulo</strong></th>
-			<th><strong>Mensagem</strong></th>
-		</tr>
-	</thead>
-	<tbody>
-		<tr>
-			<td>The table body</td>
-			<td>with two columns</td>
-			<td>with three columns</td>
-		</tr>
-	</tbody>
+<table border=0 cellpadding=0 cellspacing=0>
+	<tr bgcolor=#ff0000> 
+		<td>
+			<img src=img/sp.gif width=10 height=25>
+		</td>
+		<td class=tabcab>
+			<img src=img/sp.gif width=180 height=4><br><b>Remetente</b>
+		</td>
+		<td class=tabcab><img src=img/sp.gif width=180 height=4><br><b>Titulo</b></td>
+		<td class=tabcab><img src=img/sp.gif width=180 height=4><br><b>msg</b></td>
+		<td><img src=img/sp.gif width=26 height=4></td>
+	</tr>
 </table>
 
 <table id='tab-post' border=0 cellpadding=0 cellspacing=0></table>
+
+<div class="form-div">
 
 <form id="forum-form">
 	<ul>
@@ -53,12 +52,14 @@
 			<select name="remetente" id="remetentes" size="1"></select>
 		</li>
 		<li class="button">
-			<button id="post_btn" type="button" onclick="postar()">Postar</button>
+			<button id="post_btn" type="button" onclick="postar('1')">Postar</button>
 		</li>
 		
 	</ul>
 
 </form>
+
+</div>
 
 
 <h2>Tabela Usuários</h2>

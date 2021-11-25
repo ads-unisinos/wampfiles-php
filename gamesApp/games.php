@@ -52,8 +52,6 @@ function mostraTabelaPosts($qtdeColunas, $consulta){
 		$i++;
 	}
 	$tab .=  "<p></p>";
-
-	echo "printing table.<br>";
 	echo $tab;
 }
 
