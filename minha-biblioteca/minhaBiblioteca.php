@@ -62,32 +62,22 @@
 	{
 		$con = conectaDB();
 
-		$data_emprestimo = $con->real_escape_string( $_REQUEST['emprestimo']);
-		$data_devolucao = $con->real_escape_string( $_REQUEST['devolucao']);
-		$cod_livro = $con->real_escape_string( $_REQUEST['cod_livro']);
-		$cod_usuario = $con->real_escape_string( $_REQUEST['cod_usuario']);
-
-		var_dump(is_int($cod_livro));
-		// $data_emprestimo = getResquestParam ($con, 'emprestimo');
-		// $data_devolucao = getResquestParam ($con, 'devolucao');
-		// $cod_livro = getResquestParam ($con, 'cod_livro');
-		// $cod_usuario = getResquestParam ($con, 'cod_usuario');
+		$data_emprestimo = getResquestParam ($con, 'emprestimo');
+		$data_devolucao = getResquestParam ($con, 'devolucao');
+		$cod_livro = getResquestParam ($con, 'cod_livro');
+		$cod_usuario = getResquestParam ($con, 'cod_usuario');
 		
 		$quantidade = 1;
 		$cod_reserva = 2;
 	
-		$sql = "INSERT INTO reservas ( cod_reserva, quantidade, data_devolucao, cod_livro, cod_usuario, data_emprestimo) VALUES ('$cod_reserva','$quantidade','$data_devolucao', '$cod_livro', '$cod_usuario','$data_emprestimo')";
-		
+		$sql = "INSERT INTO reservas (cod_reserva, quantidade, data_devolucao, cod_livro, cod_usuario, data_emprestimo) VALUES ('$cod_reserva','$quantidade','$data_devolucao', '$cod_livro', '$cod_usuario','$data_emprestimo')";
 		$result = mysqli_query($con, $sql);
-
-		echo "closing conection.";
-
 		$con->close();		
 	}
 
 	function getResquestParam ($con, $name) 
 	{
-		return $con->real_escape_string($_REQUEST['$name']);
+		return $con->real_escape_string($_REQUEST[$name]);
 	}
 
 ?>
