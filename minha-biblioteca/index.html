@@ -53,21 +53,34 @@
 <table id='tab-post' border=0 cellpadding=0 cellspacing=0></table>
 
 <br><br>
-<div>
-	<h2>Detalhes do Livro</h2>
 
-	<form action="">
-		<label for="titulo_d">Titulo</label>
-		<input id = 'titulo_d' type="text" value="Titulo do livro qui..." readonly>
+<h2>Reserva de Livro</h2>
 
-		<label for="autor_d">Autor</label>
-		<input id = 'autor_d' type="text" value="Titulo do livro qui..." readonly>
-
-		<label for="reservado">Reservado</label>
-		<input id = 'reservado' type="text" value="N" readonly>
-
-		<button id="reserva" type="button">Fazer Reserva</button>
-
+<div class="form-div">
+	<form id="reserva_form">
+		<ul>
+			<li>
+				<label for="emprestimo">Emprestimo</label>
+				<input id="emprestimo" name="emprestimo" type="text" placeholder="ex. dd/mm/aaaa"
+				value="13/02/2021">
+			</li>
+			<li>
+				<label for="devolucao">Devolução</label>
+				<input type="text" id="devolucao" name="devolucao" placeholder="ex. dd/mm/aaaa"
+				value="02/03/2020">
+			</li>
+			<li>
+				<label for="cod_livro">Código Livro</label>
+				<input type="text" id="cod_livro" name="cod_livro">
+			</li>
+			<li>
+				<label for="cod_usuario">Código Usuário</label>
+				<input type="text" id="cod_usuario" name="cod_usuario">
+			</li>
+			<li class="button">
+				<button id="reserva_btn" type="button" onclick="reservaLivro()">Fazer Reserva</button>
+			</li>			
+		</ul>
 	</form>
 </div>
 

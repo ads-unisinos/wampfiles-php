@@ -34,8 +34,36 @@ function pesquisarLivro()
 	ajaxCall(requestUrl , setQueryOutputs);
 }
 
+function reservaLivro(){
+	var emprestimo = document.querySelector("#emprestimo").value;
+	var devolucao = document.querySelector("#devolucao").value;
+	var cod_livro = document.querySelector("#cod_livro").value;
+	var cod_usuario = document.querySelector("#cod_usuario").value;
+
+	var myIds = ['emprestimo', 'devolucao', 'cod_livro','cod_usuario' ];
+	clearImputs(myIds);
+
+	const params = "&emprestimo=" + emprestimo + "&devolucao=" + devolucao + "&cod_livro=" + cod_livro + "&cod_usuario=" + cod_usuario;
+	const requestUrl = "minhaBiblioteca.php?action=reservar" + params ;
+
+	ajaxCall(requestUrl, imprimirReservaCallback)
+}
+
+function clearImputs(ids){
+	if (ids.length <= 0 ){
+		alert('ids can not be null or less that or equal 0.');
+		return;
+	}
+	
+	for (var key in ids) {
+		document.querySelector(`#${ids[key]}`).value = '';
+	}
+}
+
 function setQueryOutputs(responseText) {
 	document.querySelector('#tab-post').innerHTML = responseText;
 }
 
-
+function imprimirReservaCallback (responseText) {
+	console.log("later we print responseText.");
+}
