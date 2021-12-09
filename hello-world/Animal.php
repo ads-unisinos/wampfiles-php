@@ -2,8 +2,8 @@
 
 class Animal {
 
-    private $nome;
-    private $ordem;
+    protected $nome;
+    protected $ordem;
     public static $reino = "Animal";
 
     public function __construct (string $nome, string $ordem){
